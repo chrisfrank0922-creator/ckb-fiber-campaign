@@ -1279,6 +1279,7 @@ export default function Page() {
                     </button>
                   ) : (
                     lockRejected &&
+                    !key &&
                     !manifest && (
                       <div className="callout callout-danger">
                         <strong>Access denied.</strong> The pass contains no pickup code, and the

@@ -54,6 +54,7 @@ At the time of submission:
 - Production build passes with the `/` route and `/icon.svg`.
 - A live Fiber Testnet run was completed for the Basic encrypted-data lesson: both channels reached `CHANNEL_READY`, a 1 CKB payment settled, and the decrypted seller text matched exactly.
 - The Advanced flow was run end to end against real Testnet nodes: both channels reached `CHANNEL_READY`, the access pass was rejected before payment, the 1 CKB invoice settled (`0x7664f884…33d0c`), the manifest digest verified, and the revealed code opened locker A-17. Details in [`docs/ADVANCED-RUN.md`](docs/ADVANCED-RUN.md).
+- The five Advanced screenshots below were captured from a later live Testnet run of the same flow (invoice `fibt100000…cw4trn`, payment hash `0x97df80d2…0e5b`, code `4821`).
 
 ## Security boundary
 
@@ -73,12 +74,12 @@ Basic quest evidence is in `docs/screenshots/basic/`, captured from a live Testn
 | `04-payment-receipt.png` | Settled payment: 1 CKB, 0.001 CKB fee, 1.001 CKB total, payment hash |
 | `05-decrypted-result.png` | Decrypted report matching the seller's text, plus the revealed preimage |
 
-The Advanced flow was exercised end to end on Testnet and is documented in [`docs/ADVANCED-RUN.md`](docs/ADVANCED-RUN.md), including the invoice, payment hash, manifest digest and unlock result. The matching screen sequence is still to be captured into `docs/screenshots/lockerpay/`:
+The Advanced flow is documented in [`docs/ADVANCED-RUN.md`](docs/ADVANCED-RUN.md), including invoices, payment hashes, manifest digest and unlock result. The screen sequence in `docs/screenshots/lockerpay/` was captured from one live Testnet run, in this order:
 
-| File | Should show |
+| File | Shows |
 | --- | --- |
 | `01-sealed-offer.png` | Operator C's sealed locker A-17 and its 1 CKB invoice |
-| `02-locked-before-payment.png` | Customer A's access-denied attempt before paying |
+| `02-denied-before-payment.png` | Customer A's access-denied attempt before paying |
 | `03-payment-receipt.png` | Settled 1 CKB payment with the payment hash |
 | `04-manifest-revealed.png` | Decrypted manifest with the verified SHA-256 digest |
 | `05-locker-open.png` | Locker terminal accepting the code with the bay open |

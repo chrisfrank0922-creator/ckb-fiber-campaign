@@ -65,6 +65,36 @@ The revealed pickup code was entered on the locker terminal keypad, which releas
 > Locker A-17 unlocked. Collect your parcel. — Door released. Take your parcel.
 > PARCEL A-17 · COLLECTED · BAY OPEN · COLLECTED
 
+## Screenshot sequence run
+
+The five images in `docs/screenshots/lockerpay/` come from a second live Testnet run of the same
+flow, captured in order in one session. Both nodes restarted from their saved keys, both
+channels returned to `CHANNEL_READY` (A 398 / Bottle 148, C 402 / Bottle 148 CKB), and the route
+card showed **READY TO PAY**.
+
+| Field | Value |
+| --- | --- |
+| Locker | `A-17 · Medium · 40 × 30 × 20 cm` |
+| Manifest digest | `0xb2253c551e8e972d35d2d40789ff5e1572218733735c76bbc82ef2aeb7e86811` |
+| Invoice | `fibt100000…cw4trn` |
+| Payment hash | `0x97df80d2b7fb4827f79eff091297d6910951ad619cc9465cdaa702d854ed0e5b` |
+| Sealed | 2026-11-20T11:45:50Z |
+| Settled | 2026-11-20 14:47:27 local (1 CKB + 0.001 CKB fee) |
+| Pickup code | `4821` |
+
+| Screenshot | Captured state |
+| --- | --- |
+| `01-sealed-offer.png` | Operator C's sealed locker A-17 with digest, invoice `…cw4trn` and the sealed-manifest banner |
+| `02-denied-before-payment.png` | Customer A's claim ticket at `AWAITING PAYMENT` with `Access denied` and the pay button |
+| `03-payment-receipt.png` | `Payment settled`, hash `0x97df80d2…0e5b`, `Preimage verified` |
+| `04-manifest-revealed.png` | Decrypted manifest, `DIGEST VERIFIED`, code `4821`, terminal still `SEALED` |
+| `05-locker-open.png` | Terminal `OPEN`, `Door released. Take your parcel.`, `BAY OPEN · COLLECTED` |
+
+Two UI problems showed up while capturing and were fixed in code: the `Access denied` callout
+stayed on screen after settlement (it now disappears as soon as the key arrives), and a hot
+reload dropped the in-memory payment state, which the app recovers by re-checking the stored
+payment hash against the node (`Check payment status` → `Payment: Success`).
+
 ## Bug found and fixed during this run
 
 The first seal attempt failed with `Cannot convert undefined to a BigInt`. The WASM node
