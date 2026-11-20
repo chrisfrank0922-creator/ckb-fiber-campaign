@@ -35,7 +35,7 @@ npm test        # 24 tests
 npm run build
 ```
 
-Running the demo needs two funded Testnet nodes plus the public Bottle B routing node; the steps are in the [README](../README.md#run-the-demo).
+Running the demo needs two funded Testnet nodes plus the public Bottle B routing node; the steps are in the [README](../README.md#run-it).
 
 ## Safety
 
