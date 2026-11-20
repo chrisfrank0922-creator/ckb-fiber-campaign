@@ -1,10 +1,9 @@
 # Reflection
 
-Responses to the Build on CKB Fiber campaign form, from the two Testnet runs recorded in this repo. I work on CKB/Fiber, so some of this is about where the tutorial landed and where I had to read the SDK myself.
 
 **How did it feel to have the explanations alongside each interactive step? Which format worked better, the live demo on top with the walkthrough below, or this one?**
 
-Inline is the right default for a state-machine tutorial. Fiber's failure modes are timing and state — `AWAITING_TX_SIGNATURES` is not `CHANNEL_READY`, and a `SendPayment` can return before the invoice settles — so prose that sits next to the card it describes is read at the moment it's true. A demo on top with the explanation underneath forces you to hold six channel states in your head while scrolling, which is exactly the workload the tutorial should remove.
+Inline is the right default for a state-machine tutorial. Fiber's failure modes are timing and state `AWAITING_TX_SIGNATURES` is not `CHANNEL_READY`, and a `SendPayment` can return before the invoice settles ,so prose that sits next to the card it describes is read at the moment it's true. A demo on top with the explanation underneath forces you to hold six channel states in your head while scrolling, which is exactly the workload the tutorial should remove.
 
 The one thing the inline format can't do is show the sequence as a whole, so I'd keep a collapsing "all steps" summary at the end for people who want to re-read the flow after finishing it.
 
