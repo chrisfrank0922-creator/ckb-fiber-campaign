@@ -1,23 +1,21 @@
 # Basic quest walkthrough
 
-## Proof sequence
-
-1. Start Buyer A and Seller C and fund both nodes.
+1. Start Buyer A and Seller C and fund both nodes from the Testnet faucet.
 2. Open both 500 CKB channels to Bottle B.
-3. Confirm both opening-state lists end in `CHANNEL_READY`.
+3. Wait until both opening-state lists end in `CHANNEL_READY`.
 4. Seller C encrypts the report and creates a 1 CKB Fiber Testnet invoice.
-5. Buyer A receives the public offer and attempts decryption without the key. AES-GCM rejects the substitute key.
-6. Buyer A pays the invoice. The receipt records the 1 CKB amount, the routing fee, total paid, invoice status, and payment hash.
-7. Buyer A uses the revealed payment preimage to decrypt the exact seller text locally.
-
-The captured screenshot sequence is in `docs/screenshots/basic/`.
+5. Buyer A receives the public offer and tries to decrypt without the key. AES-GCM rejects it.
+6. Buyer A pays the invoice. The receipt records amount, routing fee, total, invoice status and payment hash.
+7. Buyer A uses the revealed payment preimage to decrypt the seller's text locally.
 
 ## Evidence captured
 
-- Both channels: `CHANNEL_READY`, with the live channel balances visible.
-- Encrypted offer and invoice: seller text, ciphertext, 1 CKB amount, and invoice payment hash.
-- Rejected decryption: explicit AES-GCM rejection before payment.
-- Settled receipt: completed payment, 1 CKB amount, 0.001 CKB routing fee, 1.001 CKB total, and payment hash.
-- Decrypted result: seller text matches the submitted text and includes the revealed preimage.
+`docs/screenshots/basic/` — live Testnet run, 20 November 2026:
 
-Do not include browser profiles, local storage exports, private keys, seed phrases, or raw node credentials in the submission.
+| File | Shows |
+| --- | --- |
+| `01-channels-ready.png` | Both channels `CHANNEL_READY`, live balances visible |
+| `02-invoice.png` | Encrypted offer, ciphertext, 1 CKB invoice and payment hash |
+| `03-decrypt-rejected.png` | Explicit AES-GCM rejection before payment |
+| `04-payment-receipt.png` | 1 CKB settled, 0.001 CKB fee, 1.001 CKB total, payment hash |
+| `05-decrypted-result.png` | Decrypted text matching the seller's, plus the revealed preimage |
