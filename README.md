@@ -4,6 +4,17 @@ LockerPay is a paid smart-locker access demo built on the CKB Fiber Testnet. An 
 
 The locker and parcel are fictional. This project is **Testnet only**.
 
+## Campaign submission
+
+This repository is one submission for the **Build on CKB** Fiber campaign: the Basic quest evidence and the Advanced quest demo live together here, with LockerPay as the Advanced deliverable.
+
+| Quest | Deliverable |
+| --- | --- |
+| Basic — encrypted data over Fiber | Tutorial run on Testnet: both channels `CHANNEL_READY`, an encrypted offer rejected before payment, a settled 1 CKB receipt with its payment hash, and the decrypted text matching the seller's. Screenshots in [`docs/screenshots/basic/`](docs/screenshots/basic), walkthrough in [`docs/BASIC-WALKTHROUGH.md`](docs/BASIC-WALKTHROUGH.md). |
+| Advanced — pay-to-unlock demo | LockerPay, the app in this repo: the AES key that opens a sealed pickup manifest is the Fiber invoice preimage. Five-shot sequence in [`docs/screenshots/lockerpay/`](docs/screenshots/lockerpay), live run record in [`docs/ADVANCED-RUN.md`](docs/ADVANCED-RUN.md). |
+| Reflection | [`docs/REFLECTION-DRAFT.md`](docs/REFLECTION-DRAFT.md) |
+| Submission status | [`docs/SUBMISSION-CHECKLIST.md`](docs/SUBMISSION-CHECKLIST.md) |
+
 ## Run locally
 
 Use Node.js 22.18 or newer and npm:
