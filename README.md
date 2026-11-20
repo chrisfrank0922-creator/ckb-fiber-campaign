@@ -34,6 +34,7 @@ The public pass contains the listing, ciphertext, IV, digest, invoice, payment h
 - Added AES-256-GCM manifest encryption and SHA-256 integrity verification.
 - Added operator sealing, customer inspection, no-payment rejection, payment receipt, preimage verification, manifest reveal, keypad entry, and animated locker-door states.
 - Added safe payment recovery: attempts are recorded before submission, restored payments are checked instead of resent, and retries require an explicit verified failure.
+- Fixed the last-hop hint against the real node: the WASM API returns a ready channel's `channel_outpoint` as packed bytes, not the `{ tx_hash, index }` object its types describe. `lib/outpoint.ts` accepts both shapes and is unit tested.
 - Added browser-only progress handling that keeps node identities and public progress separate from AES keys, decrypted manifests, and pickup codes.
 - Reworked the UI into a warm paper / industrial locker-bank design with responsive setup, route-liquidity, operator, customer, receipt, and collection panels.
 - Added unit coverage for cryptography, pass validation, manifest validation, and payment-safety behavior.
@@ -49,9 +50,10 @@ npm run build
 At the time of submission:
 
 - TypeScript typecheck passes.
-- Test suite passes: **20 tests**.
+- Test suite passes: **24 tests**.
 - Production build passes with the `/` route and `/icon.svg`.
 - A live Fiber Testnet run was completed for the Basic encrypted-data lesson: both channels reached `CHANNEL_READY`, a 1 CKB payment settled, and the decrypted seller text matched exactly.
+- The Advanced flow was run end to end against real Testnet nodes: both channels reached `CHANNEL_READY`, the access pass was rejected before payment, the 1 CKB invoice settled (`0x7664f884…33d0c`), the manifest digest verified, and the revealed code opened locker A-17. Details in [`docs/ADVANCED-RUN.md`](docs/ADVANCED-RUN.md).
 
 ## Security boundary
 
@@ -71,7 +73,15 @@ Basic quest evidence is in `docs/screenshots/basic/`, captured from a live Testn
 | `04-payment-receipt.png` | Settled payment: 1 CKB, 0.001 CKB fee, 1.001 CKB total, payment hash |
 | `05-decrypted-result.png` | Decrypted report matching the seller's text, plus the revealed preimage |
 
-The Advanced demo sequence (`docs/screenshots/lockerpay/`) — sealed pass, rejected access before payment, settled receipt, revealed manifest, opened locker — must be captured from your own live run, since it requires funded Buyer A and Operator C nodes in your browser.
+The Advanced flow was exercised end to end on Testnet and is documented in [`docs/ADVANCED-RUN.md`](docs/ADVANCED-RUN.md), including the invoice, payment hash, manifest digest and unlock result. The matching screen sequence is still to be captured into `docs/screenshots/lockerpay/`:
+
+| File | Should show |
+| --- | --- |
+| `01-sealed-offer.png` | Operator C's sealed locker A-17 and its 1 CKB invoice |
+| `02-locked-before-payment.png` | Customer A's access-denied attempt before paying |
+| `03-payment-receipt.png` | Settled 1 CKB payment with the payment hash |
+| `04-manifest-revealed.png` | Decrypted manifest with the verified SHA-256 digest |
+| `05-locker-open.png` | Locker terminal accepting the code with the bay open |
 
 ## Credits
 

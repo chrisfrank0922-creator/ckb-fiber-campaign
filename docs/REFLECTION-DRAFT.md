@@ -26,6 +26,12 @@ Waiting for `CHANNEL_READY` was the part I was least sure about. The funding app
 
 I built LockerPay, the Advanced entry in this repository: an operator seals a smart-locker pickup manifest — code, parcel, recipient, note — with AES-256-GCM and sells it behind a 1 CKB Fiber invoice. The customer sees the locker listing and the ciphertext, cannot open it before paying, and after settlement uses the revealed preimage to decrypt the manifest, verify its SHA-256 digest, and enter the four-digit code on the keypad to open the door. Beyond that demo I would like to use the same pattern for paid API responses or one-off data exports, where the response body is encrypted with the key that becomes the invoice preimage.
 
+## Optional question 5: a problem I ran into
+
+**If you ran into a problem, what did you expect, what happened, and how did you resolve it?**
+
+Opening the channel the first time failed with `Peer Pubkey(...)'s feature not found, waiting for peer to send Init message`. I expected the channel to open as soon as the button was enabled, but the node had not finished its handshake with Bottle yet, so the request was rejected before anything was submitted. I waited a moment and pressed open again; it went through and reached `CHANNEL_READY` without opening a duplicate channel. The lesson was that an error at this step does not mean funds moved — check the channel list before doing anything drastic.
+
 ## Optional question 4: one change to the tutorial
 
 **If you could change one thing about the tutorial, what would it be?**
