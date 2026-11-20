@@ -1,9 +1,5 @@
 # Reflection
 
-Answers to the Build on CKB campaign form, from the runs in this repo.
-
-## Required — explanations next to each step
-
 **How did it feel having the explanations alongside each step? Which format worked better, the live demo on top with the walkthrough below, or this one?**
 
 The inline version, easily. I only had to look at the card in front of me to know why it mattered, and the channel states are confusing enough that I would have lost track if the text were somewhere else on the page. I did miss being able to see the whole flow at once, so a collapsed summary at the end would help.
